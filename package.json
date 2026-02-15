@@ -1,0 +1,40 @@
+{
+  "name": "@mzohaibnaz/ui-vue",
+  "version": "0.0.1",
+  "private": false,
+  "type": "module",
+  "main": "./dist/ui-vue.cjs.js",
+  "module": "./dist/ui-vue.es.js",
+  "types": "./dist-types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist-types/index.d.ts",
+      "import": "./dist/ui-vue.es.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly -p tsconfig.build.json",
+    "dev": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.build.json --watch & vite build --watch",
+    "typecheck": "vue-tsc -p tsconfig.json --noEmit"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.24"
+  },
+  "dependencies": {
+    "@mzohaibnaz/ui-core": "^0.0.1",
+    "lucide-vue-next": "^0.563.0",
+    "motion-v": "^1.10.2",
+    "reka-ui": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4",
+    "vue": "^3.5.24",
+    "vue-tsc": "^3.1.4"
+  }
+}
