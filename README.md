@@ -27,8 +27,39 @@ https://github.com/mzohaibnaz/ui-core
 Vue components import Tailwind tokens and utilities:
 
 ```ts
+<script setup lang="ts">
+import type { HTMLAttributes } from "vue"
+import { computed } from "vue"
 import { buttonVariants } from "@mzohaibnaz/ui-core/components/button"
-import { cn } from "@mzohaibnaz/ui-core/utils"
+import { cn, type VariantProps } from "@mzohaibnaz/ui-core/utils"
+
+// Infer variant types from ui-core
+type ButtonVariants = VariantProps<typeof buttonVariants>
+
+interface Props {
+  variant?: ButtonVariants["variant"]
+  size?: ButtonVariants["size"]
+  class?: HTMLAttributes["class"]
+}
+
+const props = withDefaults(defineProps<Props>(), {})
+
+const classes = computed(() =>
+  cn(
+    buttonVariants({
+      variant: props.variant,
+      size: props.size,
+    }),
+    props.class
+  )
+)
+</script>
+
+<template>
+  <button :class="classes">
+    <slot />
+  </button>
+</template>
 ```
 
 The Vue layer handles rendering while styles come from ui-core.
